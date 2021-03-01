@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include calendly *.css
+recursive-include calendly *.csv
+recursive-include calendly *.html
+recursive-include calendly *.ico
+recursive-include calendly *.js
+recursive-include calendly *.json
+recursive-include calendly *.md
+recursive-include calendly *.png
+recursive-include calendly *.py
+recursive-include calendly *.svg
+recursive-include calendly *.txt
+recursive-exclude calendly *.pyc

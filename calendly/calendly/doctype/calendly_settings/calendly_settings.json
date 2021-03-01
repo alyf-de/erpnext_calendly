@@ -1,0 +1,45 @@
+{
+ "creation": "2021-03-01 15:25:14.985903",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "enabled",
+  "webhook_signing_key"
+ ],
+ "fields": [
+  {
+   "default": "0",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "webhook_signing_key",
+   "fieldtype": "Password",
+   "label": "Webhook Signing Key"
+  }
+ ],
+ "issingle": 1,
+ "modified": "2021-03-01 15:25:14.985903",
+ "modified_by": "Administrator",
+ "module": "Calendly",
+ "name": "Calendly Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
