@@ -28,7 +28,7 @@ def add_comment_to_party(data):
 	lead_name = payload.get('name', '')
 	phone = ''
 
-	text = '<div><b>%s created a new Event via Calendly</b></div>' % lead_name
+	text = f'<div><b>{lead_name} created a new Event via Calendly</b></div>'
 	q_and_a = payload.get('questions_and_answers', [])
 	for item in q_and_a:
 		question = item.get('question')
@@ -37,15 +37,16 @@ def add_comment_to_party(data):
 		if question == 'Telefonnummer':
 			phone = answer
 
-		text += '<div><b>%s</b></div>' % item.get('question')
-		text += '<div>%s</div>' % item.get('answer')
+		text += f"<div><b>{item.get('question')}</b></div>"
+		text += f"<div>{item.get('answer')}</div>"
 		text += '<div><br></div>'
 
-	text += '<div><a href="%s">Cancel</a> or ' % payload.get('cancel_url')
-	text += '<a href="%s">Reschedule</a></div>' % payload.get('reschedule_url')
+	text += f"""<div><a href="{payload.get('cancel_url')}">Cancel</a> or """
+	text += f"""<a href="{payload.get('reschedule_url')}">Reschedule</a></div>"""
 
-	existing_lead = frappe.get_value('Lead', filters={'email_id': email}, fieldname='name')
-	if existing_lead:
+	if existing_lead := frappe.get_value(
+		'Lead', filters={'email_id': email}, fieldname='name'
+	):
 		doc = frappe.get_doc('Lead', existing_lead)
 		if doc.status == 'Converted':
 			existing_customer = frappe.get_value('Customer', filters={'lead_name': doc.name}, fieldname='name')
@@ -86,8 +87,7 @@ def verify_signature(secret_key: str):
 def parse_signature_header(signature_header: str):
 	key_value_pairs = signature_header.split(',')
 	keys_and_values = [key_value.split('=') for key_value in key_value_pairs]
-	values = keys_and_values[0][1], keys_and_values[1][1]
-	return values
+	return keys_and_values[0][1], keys_and_values[1][1]
 
 
 def create_signature(timestamp: str, request_body: str, secret_key: str):
